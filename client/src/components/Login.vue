@@ -4,7 +4,7 @@
 <div class="w3-card-4">
   <div  class="w3-container w3-orange">
 
- <h4> Register as a new user</h4>
+ <h4> Login</h4>
        </div>
 
        <h4><div class="error w3-text-red" v-html="error"></div></h4>
@@ -14,7 +14,7 @@
     v-model="email"
    />
    <br>
-   <h4>Please Provide your Email</h4>
+   <h4>Please Provide your Password</h4>
    <input type="password" class="w3-input w3-border w3-sand"
           name="password"
           placeholder="Enter password"
@@ -22,7 +22,7 @@
    /><br>
    <br>
 
-    <button @click="register" class="w3-btn w3-blue">Register</button>
+    <button @click="login" class="w3-btn w3-blue">login</button>
     <br><br>
 </div>
 </div>
@@ -39,10 +39,10 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
-        console.log('register button', this.email, this.password)
-        const response = await AuthenticationService.register({
+        console.log('Login button', this.email, this.password)
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
