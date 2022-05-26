@@ -45,11 +45,13 @@ module.exports = {
                     error: 'Login Information is not correct...'
                 })
             }
+            else {
             const output = user.toJSON()
             res.send({
                user: output,
                token: jwtSignUser(output)
            })
+        }
         }
            catch(err){
             console.log(err)

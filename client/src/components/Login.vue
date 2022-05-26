@@ -2,7 +2,8 @@
 <div>
    <br>
 <div class="w3-card-4">
-  <div  class="w3-container w3-orange">
+  <center>
+    <div  class="w3-container w3-blue" style="width: 65%;">
 
  <h4> Login</h4>
        </div>
@@ -10,18 +11,22 @@
        <h4><div class="error w3-text-red" v-html="error"></div></h4>
        <br>
        <h4>Please Provide your Email</h4>
-       <input type="text"  name="email" class="w3-input w3-border w3-sand"  placeholder="Enter email"
+        <form name="album-login-user"
+       autocomplete="off">
+       <input type="text"  name="email" class="w3-input" style="width: 50%;"  placeholder="Enter email"
     v-model="email"
    />
    <br>
    <h4>Please Provide your Password</h4>
-   <input type="password" class="w3-input w3-border w3-sand"
+   <input  class="w3-input" style="width: 50%;"
           name="password"
           placeholder="Enter password"
-          v-model="password"
-   /><br>
+          v-model="password" autocomplete="new-password"
+   />
+   </form>
    <br>
-
+   <br>
+</center>
     <button @click="login" class="w3-btn w3-blue">login</button>
     <br><br>
 </div>
@@ -46,6 +51,12 @@ export default {
           email: this.email,
           password: this.password
         })
+        console.log(response.data.token)
+        this.error = 'Login sucessfull'
+        this.email = ' '
+        this.password = ' '
+        // this.$routestore.dispatch('setToken', response.data.token)
+        // this.$routestore.dispatch('setUser', response.data.user)
         console.log(response)
       } catch (error) {
         this.error = error.response.data.error

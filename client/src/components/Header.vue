@@ -1,5 +1,7 @@
 <template>
+
 <div class="w3-row-padding">
+  <center><h1>Welcome to Album Store</h1></center>
 <div class="w3-half">
      <div class="w3-half">
          <router-link to="/">
@@ -12,14 +14,15 @@
     </div>
 </div>
 <div class="w3-half">
-    <router-link to="register">
+      <router-link to="register">
         <button @click="gotTo({to:'register'})" class="w3-container w3-blue">
         Signup
         </button></router-link>
          <router-link to="login">
         <button @click="gotTo({to:'root'})" class="w3-container w3-blue">
         Login
-        </button></router-link><br>
+        </button></router-link>
+        <br>
 </div>
 </div>
 
