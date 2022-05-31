@@ -21,6 +21,7 @@ module.exports = {
            res.status(400).send({
                error: 'Email already exists...'
            })
+           return
        }
     },
     async login(req, res) {
@@ -35,6 +36,7 @@ module.exports = {
                 res.status(403).send({
                     error: 'This Email doesnt exist...'
                 })
+                return
             }
            
             const pass = password === user.password
@@ -44,6 +46,7 @@ module.exports = {
                 res.status(403).send({
                     error: 'Login Information is not correct...'
                 })
+                return
             }
             else {
             const output = user.toJSON()
@@ -51,6 +54,7 @@ module.exports = {
                user: output,
                token: jwtSignUser(output)
            })
+           return
         }
         }
            catch(err){
@@ -59,6 +63,7 @@ module.exports = {
                    
                    error: 'Something went wrong'
                })
+               return
            }
     }
 }

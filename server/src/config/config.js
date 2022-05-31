@@ -1,7 +1,7 @@
 module.exports = {
     port: process.env.PORT || 8082,
     db:{
-        database: process.env.DB_NAME || 'node_test',
+        database: process.env.DB_NAME || 'ramstore',
         user: process.env.DB_USER || 'root',
         password: process.env.DB_PASS || '',
         options:{

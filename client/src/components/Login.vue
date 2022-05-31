@@ -55,9 +55,10 @@ export default {
         this.error = 'Login sucessfull'
         this.email = ' '
         this.password = ' '
-        // this.$routestore.dispatch('setToken', response.data.token)
-        // this.$routestore.dispatch('setUser', response.data.user)
+        this.$routestore.dispatch('setToken', response.data.token)
+        this.$routestore.dispatch('setUser', response.data.user)
         console.log(response)
+        return
       } catch (error) {
         this.error = error.response.data.error
       }
