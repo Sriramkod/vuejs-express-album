@@ -51,6 +51,7 @@ export default {
           email: this.email,
           password: this.password
         })
+        this.$router.push('/add')
         console.log(response.data.token)
         this.error = 'Login sucessfull'
         this.email = ' '

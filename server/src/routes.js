@@ -14,17 +14,17 @@ module.exports = (app) => {
   app.post("/album", albums.create);
 
   // Retrieve all albums
-  app.get("/", albums.findAll);
+  app.get("/album", albums.findAll);
 
   // Retrieve a single album with id
-  app.get("/:id", albums.findOne);
+  app.get("/album/:id", albums.findOne);
 
   // Update a album with id
-  app.put("/:id", albums.update);
+  app.put("/album/:id", albums.update);
 
   // Delete a album with id
-  app.delete("/:id", albums.delete);
+  app.delete("/album/:id", albums.delete);
 
   // Delete all albums
-  app.delete("/", albums.deleteAll);
+  app.delete("/album", albums.deleteAll);
 }
