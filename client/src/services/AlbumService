@@ -27,6 +27,22 @@ class AlbumService {
   findByTitle(title) {
     return http.get(`/album?title=${title}`);
   }
+
+  createSong(data) {
+    return http.post("/song", data);
+  }
+  findSongsByAlbumId(id) {
+    return http.get(`/songs/${id}`)
+  }
+  getSong(id){
+    return http.get(`/song/${id}`);
+  }
+  updateSong(id, data) {
+    return http.put(`/song/${id}`, data);
+  }
+  deleteSong(id) {
+    return http.delete(`/song/${id}`);
+  }
 }
 
 export default new AlbumService();

@@ -1,6 +1,7 @@
 const AuthenticationController = require('./controllers/AuthenticationController.js')
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy.js')
 const albums = require("./controllers/album.controller.js");
+const songs = require("./controllers/song.controller.js");
 module.exports = (app) => {
     app.post('/register', 
         AuthenticationControllerPolicy.register,
@@ -27,4 +28,27 @@ module.exports = (app) => {
 
   // Delete all albums
   app.delete("/album", albums.deleteAll);
+
+
+
+
+  // Create a new song
+  app.post("/song", songs.create);
+
+  // Retrieve all albums
+  app.get("/song", songs.findAll);
+
+  // Retrieve a single album with id
+  app.get("/song/:id", songs.findOne);
+
+  // Update a song with id
+  app.put("/song/:id", songs.update);
+
+  // Delete a song with id
+  app.delete("/song/:id", songs.delete);
+
+  // Delete all songs
+  app.delete("/song", songs.deleteAll);
+  
+  app.get("/songs/:id", songs.findAllByAlbum)
 }

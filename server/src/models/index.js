@@ -25,4 +25,5 @@ fs
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 db.albums = require("./album.model.js")(sequelize, Sequelize);
+db.songs = require("./song.model.js")(sequelize, Sequelize);
 module.exports = db
