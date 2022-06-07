@@ -67,7 +67,8 @@ export default {
     saveAlbum () {
       var data = {
         title: this.album.title,
-        description: this.album.description
+        description: this.album.description,
+        artist: this.$route.params.id
       }
 
       AlbumService.create(data)

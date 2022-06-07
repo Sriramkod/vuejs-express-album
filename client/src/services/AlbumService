@@ -43,6 +43,13 @@ class AlbumService {
   deleteSong(id) {
     return http.delete(`/song/${id}`);
   }
+  findByTitleSong(title) {
+    return http.get(`/song?title=${title}`);
+
+  }
+  findAllByArtist(artist){
+    return http.get(`/artist?artist=${artist}`);
+  }
 }
 
 export default new AlbumService();

@@ -1,39 +1,57 @@
 <template>
-  <div class="list row">
-    <div class="col-md-8">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search by title"
+
+<div class="list row">
+
+    <div class="col-md-10">
+      <div class="row">
+        <div class="column">&nbsp;</div>
+        </div>
+      <div class="row w3-card-4">
+        <div class="column">
+        <input type="text" class="form-control w3-input w3-border w3-round" placeholder="Search by title"
           v-model="title"/>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button"
-            @click="searchTitle"
+        </div>
+        <div class="column">
+          <button class="w3-btn w3-green w3-round" type="button"
+            @click="searchArt"
           >
             Search
+          </button>
+        </div>
+<div class="column">
+        <input type="text" class="form-control w3-input w3-border w3-round" placeholder="Search by artist"
+          v-model="artist"/>
+        </div>
+        <div class="column">
+          <button class="w3-btn w3-red w3-round" type="button"
+            @click="searchTitle"
+          >
+            Search Artist
           </button>
         </div>
       </div>
     </div>
     <div class="col-md-6">
-      <h4>List of Albums</h4>
-      <ul class="w3-ul w3-card" style="width:80%">
-        <li class="w3-blue"
-          :class="{ active: index == currentIndex }"
+      <ul class="w3-ul w3-card-4">
+         <li class="w3-bar" :class="{ active: index == currentIndex }"
           v-for="(album, index) in albums"
           :key="index"
           @click="setActiveAlbum(album, index)"
         >
-          {{ album.title }}
-        </li>
+      <!-- <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span> -->
+
+      <img src="../assets/albumimg.png" class="w3-bar-item w3-circle w3-hide-small" style="width:80px">
+      <div class="w3-bar-item">
+        <span class="w3-large">{{ album.title }}</span><br>
+      </div>
+    </li>
       </ul>
       <br>
       <br>
-      <button  class="w3-button w3-red" @click="removeAllAlbums">
-        Remove All
-      </button>
     </div>
     <div class="col-md-6">
       <center>
-      <div v-if="currentAlbum" class="w3-card w3-yellow">
+      <div v-if="currentAlbum" class="w3-card w3-aqua">
         <h4>About Album</h4>
         <div>
           <label><strong>Title:</strong></label> {{ currentAlbum.title }}
@@ -50,7 +68,7 @@
         <router-link :to="'/albums/' + currentAlbum.id"  class="w3-button w3-red">Edit</router-link>
         &nbsp;&nbsp;</div>
         <div class="column">
-        <router-link :to="'/addsong/' + currentAlbum.id"  class="w3-button w3-blue">Add new Song</router-link>
+        <router-link :to="'/addsong/' + currentAlbum.id"  class="w3-button w3-green">Add new Song</router-link>
         &nbsp;&nbsp;</div>
         <div class="column">
         <router-link :to="'/songs/' + currentAlbum.id"  class="w3-button w3-green">View Songs</router-link>
@@ -78,7 +96,8 @@ export default {
       albums: [],
       currentAlbum: null,
       currentIndex: -1,
-      title: ''
+      title: '',
+      artist: ''
     }
   },
   methods: {
@@ -114,8 +133,17 @@ export default {
           console.log(e)
         })
     },
-
     searchTitle () {
+      AlbumService.findAllByArtist(this.artist)
+        .then(response => {
+          this.albums = response.data
+          console.log(response.data)
+        })
+        .catch(e => {
+          console.log(e)
+        })
+    },
+    searchArt () {
       AlbumService.findByTitle(this.title)
         .then(response => {
           this.albums = response.data

@@ -10,15 +10,18 @@
         </button></router-link><br>
     </div>
     <div class="w3-half">
-        <button @click="se" class="w3-container w3-blue">Search</button><br>
+      <router-link to="/albums">
+        <button @click="gotTo({to:'albums'})" class="w3-container w3-blue">Albums</button>
+        </router-link>
+        <br>
     </div>
 </div>
 <div class="w3-half">
-      <router-link to="register">
-        <button @click="gotTo({to:'register'})" class="w3-container w3-blue">
+      <router-link to="/register">
+        <button @click="gotTo({to:'/register'})" class="w3-container w3-blue">
         Signup
         </button></router-link>
-         <router-link to="login">
+         <router-link to="/login">
         <button @click="gotTo({to:'root'})" class="w3-container w3-blue">
         Login
         </button></router-link>

@@ -15,7 +15,8 @@ exports.create = (req, res) => {
   // Create a Album
   const album = {
     title: req.body.title,
-    description: req.body.description
+    description: req.body.description,
+    artist: req.body.artist
   };
 
   // Save Album in the database
@@ -132,6 +133,22 @@ exports.deleteAll = (req, res) => {
       res.status(500).send({
         message:
           err.message || "Some error occurred while removing all Albums."
+      });
+    });
+};
+
+exports.findAllByArtist = (req, res) => {
+  const artist = req.query.artist;
+  var condition = artist ? { artist: { [Op.like]: `%${artist}%` } } : null;
+
+  Album.findAll({ where: condition })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Albums By Artist Name."
       });
     });
 };

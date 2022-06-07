@@ -29,7 +29,7 @@ export default new Router({
       component: Login
     },
     {
-      path: '/add',
+      path: '/add/:id',
       name: 'add',
       component: AddAlbum
     }, {

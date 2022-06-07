@@ -29,7 +29,8 @@ module.exports = (app) => {
   // Delete all albums
   app.delete("/album", albums.deleteAll);
 
-
+  //get Albums by artist title
+  app.get("/artist",albums.findAllByArtist);
 
 
   // Create a new song

@@ -1,38 +1,52 @@
 <template>
+<div>
+     <br>
+     <div class="w3-card-4">
+  <center>
+       <div  class="w3-container w3-blue" style="width: 65%;">
+
+ <h4> Edit this Song</h4>
+       </div>
   <div v-if="currentTutorial" class="edit-form">
-    <h4>Songs </h4>
+  <p>{{ message }}</p>
+    <h4>Songs  </h4>
     <form>
       <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" id="title"
+        <label for="title" class="error w3-text-blue">Title</label>
+        <input type="text" class="form-control w3-input w3-border w3-sand" style="width: 150%;"
+         id="title"
           v-model="currentTutorial.title"
         />
       </div>
       <div class="form-group">
-        <label for="description">About Song</label>
-        <input type="text" class="form-control" id="description"
+        <label for="description" class="error w3-text-blue">About Song</label>
+        <input type="text" class="form-control w3-input w3-border w3-sand" style="width: 150%;"
+         id="description"
           v-model="currentTutorial.description"
         />
       </div>
     </form>
-
-    <button class="badge badge-danger mr-2"
+<br>
+    <button class="w3-btn w3-red"
       @click="deleteTutorial"
     >
       Delete
     </button>
 
-    <button type="submit" class="badge badge-success"
+    <button type="submit" class="w3-btn w3-blue"
       @click="updateTutorial"
     >
       Update
     </button>
-    <p>{{ message }}</p>
+    <br><br>
   </div>
 
   <div v-else>
     <br />
     <p>Click on a Song to view...</p>
+  </div>
+  </center>
+     </div>
   </div>
 </template>
 
@@ -82,6 +96,7 @@ export default {
         .then(response => {
           console.log(response.data)
           this.message = 'The song was updated successfully!'
+          this.$router.push({ name: 'albums' })
         })
         .catch(e => {
           console.log(e)

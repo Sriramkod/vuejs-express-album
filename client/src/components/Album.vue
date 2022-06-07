@@ -1,55 +1,54 @@
 <template>
+<div>
+     <br>
+<div class="w3-card-4">
+  <center>
+       <div  class="w3-container w3-blue" style="width: 65%;">
+
+ <h4> Edit this Album</h4>
+       </div>
+       <br>
   <div v-if="currentTutorial" class="edit-form">
-    <h4>Tutorial</h4>
+    <p class="error w3-text-blue">{{ message }}</p>
     <form>
       <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" id="title"
+        <label class="error w3-text-blue" for="title">Title</label>
+        <input type="text" class="form-control w3-input w3-border w3-sand" style="width: 150%;"
+         id="title"
           v-model="currentTutorial.title"
         />
+
       </div>
       <div class="form-group">
-        <label for="description">Description</label>
-        <input type="text" class="form-control" id="description"
+        <label for="description" class="error w3-text-blue">Description</label>
+        <input type="text" class="form-control w3-input w3-border w3-sand" style="width: 150%;"
+         id="description"
           v-model="currentTutorial.description"
         />
       </div>
-
-      <div class="form-group">
-        <label><strong>Status:</strong></label>
-        {{ currentTutorial.published ? "Published" : "Pending" }}
-      </div>
     </form>
-
-    <button class="badge badge-primary mr-2"
-      v-if="currentTutorial.published"
-      @click="updatePublished(false)"
-    >
-      UnPublish
-    </button>
-    <button v-else class="badge badge-primary mr-2"
-      @click="updatePublished(true)"
-    >
-      Publish
-    </button>
-
-    <button class="badge badge-danger mr-2"
+    <br>
+    <button class="w3-btn w3-red"
       @click="deleteTutorial"
     >
       Delete
     </button>
 
-    <button type="submit" class="badge badge-success"
+    <button type="submit" class="w3-btn w3-blue"
       @click="updateTutorial"
     >
       Update
     </button>
-    <p>{{ message }}</p>
   </div>
 
   <div v-else>
     <br />
     <p>Click on a Album to view...</p>
+  </div>
+   <br>
+
+  </center>
+  </div>
   </div>
 </template>
 
@@ -98,20 +97,8 @@ export default {
       AlbumService.update(this.currentTutorial.id, this.currentTutorial)
         .then(response => {
           console.log(response.data)
-          var datasong = {
-            album: this.currentTutorial.id,
-            title: this.currentTutorial.title,
-            description: this.currentTutorial.description
-          }
-          AlbumService.createSong(datasong)
-            .then(response => {
-              this.album.id = response.data.id
-              console.log(response.data)
-            })
-            .catch(e => {
-              console.log(e)
-            })
           this.message = 'The album was updated successfully!'
+          this.$router.push({ name: 'albums' })
         })
         .catch(e => {
           console.log(e)
@@ -122,7 +109,7 @@ export default {
       AlbumService.delete(this.currentTutorial.id)
         .then(response => {
           console.log(response.data)
-          this.$router.push({ name: 'tutorials' })
+          this.$router.push({ name: 'albums' })
         })
         .catch(e => {
           console.log(e)
@@ -137,6 +124,7 @@ export default {
 </script>
 
 <style>
+@import "https://www.w3schools.com/w3css/4/w3.css";
 .edit-form {
   max-width: 300px;
   margin: auto;

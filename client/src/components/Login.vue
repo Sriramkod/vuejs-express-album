@@ -51,7 +51,10 @@ export default {
           email: this.email,
           password: this.password
         })
-        this.$router.push('/add')
+        console.log(this.email)
+        const id = this.email
+        this.$router.push({ path: `/add/${id}` })
+        // this.$router.push('/add/'+this.email)
         console.log(response.data.token)
         this.error = 'Login sucessfull'
         this.email = ' '
